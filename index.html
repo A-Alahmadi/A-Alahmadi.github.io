@@ -383,10 +383,13 @@ h2.section-title {
   text-transform: uppercase; color: var(--text-1);
 }
 /* beside a mark the name is support, not the headline, so it steps back and
-   wraps to two lines rather than pushing the mark out of the band */
+   wraps to two lines rather than pushing the mark out of the band. It is set
+   the way the company sets it in its own lockup, title case in a humanist
+   sans, not the uppercase mono used for a standalone mark. */
 .card-logo + .card-clientmark {
-  font-size: 10px; letter-spacing: 0.08em; line-height: 1.25;
-  color: var(--text-2); max-width: 150px; white-space: normal;
+  font-family: var(--font-ui); text-transform: none;
+  font-size: 11.5px; font-weight: 400; letter-spacing: 0.005em; line-height: 1.3;
+  color: var(--text-2); max-width: 152px; white-space: normal;
 }
 
 .card-body { padding: 20px 20px 22px; flex: 1; display: flex; flex-direction: column; }
