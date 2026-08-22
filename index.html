@@ -317,13 +317,18 @@ h2.section-title {
    keep the page scannable. grid-template-rows animates the reveal without a
    fixed height, and the collapsed state leaves the tab order untouched. */
 .more-wrap { display: flex; justify-content: center; margin-top: 42px; }
-.more-btn { position: relative; padding-right: 44px; }
-.more-btn::after {
-  content: "+"; position: absolute; right: 22px; top: 50%;
-  transform: translateY(-50%); font-size: 17px; line-height: 1;
-  color: var(--accent); transition: transform 300ms var(--ease-out);
+.more-btn { position: relative; padding-right: 48px; }
+/* the plus and minus are drawn, not typed: a glyph here depends on the font
+   carrying U+2212 and on the escape surviving every build step, and it did
+   not. Two bars cost nothing and morph cleanly instead. */
+.more-btn::before, .more-btn::after {
+  content: ""; position: absolute; right: 20px; top: 50%;
+  width: 13px; height: 2px; background: var(--accent);
+  transition: transform 320ms var(--ease-out);
 }
-.more-btn[aria-expanded="true"]::after { content: "2"; }
+.more-btn::before { transform: translateY(-50%); }
+.more-btn::after { transform: translateY(-50%) rotate(90deg); }
+.more-btn[aria-expanded="true"]::after { transform: translateY(-50%) rotate(0deg); }
 /* display none rather than a height transition: a multi row grid keeps its
    implicit rows at full height, so collapsing by rows left a blank gap. The
    entrance is animated instead, which reads the same and cannot mis-measure. */
