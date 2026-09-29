@@ -40,7 +40,7 @@
   --accent-ink: #14100a;
   --head-h: 88px;
   --font-ui: system-ui, "Segoe UI", -apple-system, "Helvetica Neue", sans-serif;
-  --font-data: "Courier New", Courier, ui-monospace, monospace;
+  --font-data: "Cascadia Code", Consolas, ui-monospace, "SF Mono", monospace;
   --wrap: 1180px;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -126,11 +126,11 @@ a { color: var(--text-1); text-decoration: none; }
 
 .mark {
   display: inline-flex; align-items: center; justify-content: center;
-  border: 1px solid var(--line); background: transparent; cursor: pointer;
-  padding: 5px 7px; line-height: 0;
-  transition: border-color 250ms, transform 250ms var(--ease-out);
+  border: 0; background: transparent; cursor: pointer;
+  min-width: 50px; line-height: 0;
+  transition: transform 250ms var(--ease-out);
 }
-.mark:hover { border-color: var(--accent-deep); transform: translateY(-1px); }
+.mark:hover { transform: translateY(-1px); }
 .mark .mark-anim { display: block; }
 
 .nav-toggle {
@@ -761,7 +761,7 @@ footer .wrap span:first-child::before {
 <header class="site-head">
   <div class="bar">
     <button class="mark" id="mark-home" aria-label="Back to top" title="Back to top">
-      <img class="mark-anim" src="https://a-alahmadi.github.io/media/crane_v12_128_once.gif" width="28" height="28" alt="" aria-hidden="true">
+      <img class="mark-anim" src="https://a-alahmadi.github.io/media/crane_v12_128_once.gif" width="40" height="40" alt="" aria-hidden="true">
     </button>
     <div class="head-name">Ahmad Al-Ahmadi<small>Project and Operations Manager</small></div>
     <nav class="site-nav" id="site-nav" aria-label="Sections">
