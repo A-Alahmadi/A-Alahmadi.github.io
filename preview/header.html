@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>معاينة العلامة المتحركة في الترويسة</title>
+<style>
+/* tokens copied verbatim from 04_Site/styles.css :root */
+:root {
+  --bg-0: #0a0e13;
+  --bg-1: #0f151c;
+  --bg-2: #151d26;
+  --line: #223041;
+  --line-soft: #1a2532;
+  --text-1: #e9eef4;
+  --text-2: #93a1b1;
+  --accent: #f2a33c;
+  --accent-deep: #b87a1e;
+  --font-ui: system-ui, "Segoe UI", -apple-system, "Helvetica Neue", sans-serif;
+  --font-data: "Courier New", Courier, ui-monospace, monospace;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg-0); color: var(--text-1);
+  font-family: var(--font-ui); line-height: 1.6;
+}
+.page { max-width: 760px; margin: 0 auto; padding: 24px 16px 72px; }
+h1 { font-size: 19px; margin: 0 0 6px; }
+h2 { font-size: 15px; margin: 0; font-weight: 700; }
+p { margin: 0 0 14px; color: var(--text-2); font-size: 14px; }
+.lede { border-inline-start: 2px solid var(--accent); padding-inline-start: 12px; }
+
+.spec { margin: 26px 0 0; border: 1px solid var(--line-soft); background: var(--bg-1); }
+.spec > header {
+  display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+  padding: 11px 14px; border-bottom: 1px solid var(--line-soft);
+}
+.spec .note { font-size: 12.5px; color: var(--text-2); }
+
+/* header rules copied verbatim from 04_Site/styles.css */
+.site-head {
+  background: color-mix(in srgb, var(--bg-0) 82%, transparent);
+  border-bottom: 1px solid var(--line-soft);
+}
+.site-head .bar {
+  margin: 0 auto; display: flex; align-items: center; gap: 28px; padding: 14px 24px;
+}
+.mark {
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid var(--line); background: transparent; cursor: pointer;
+  padding: 5px 7px; line-height: 0;
+  transition: border-color 250ms, transform 250ms var(--ease-out);
+}
+.mark:hover { border-color: var(--accent-deep); transform: translateY(-1px); }
+.mark svg .m-a { stroke: var(--text-1); stroke-width: 2.4; }
+.mark svg .m-slash { stroke: var(--accent); stroke-width: 2.4; }
+.head-name { font-weight: 700; font-size: 15px; letter-spacing: 0.01em; white-space: nowrap; }
+.head-name small {
+  display: block; font-weight: 400; color: var(--text-2);
+  font-size: 11.5px; letter-spacing: 0.04em;
+}
+.site-nav { display: flex; gap: 22px; margin-inline-start: auto; }
+.site-nav a {
+  font-family: var(--font-data); font-size: 12px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--text-2); text-decoration: none;
+}
+.nav-toggle {
+  display: none; flex-direction: column; justify-content: center; gap: 5px;
+  width: 42px; height: 40px; padding: 0 10px;
+  background: transparent; border: 1px solid var(--line); cursor: pointer;
+  margin-inline-start: auto;
+}
+.nav-toggle span { display: block; height: 2px; width: 100%; background: var(--text-1); }
+@media (max-width: 1023px) {
+  .nav-toggle { display: flex; }
+  .site-nav { display: none; }
+}
+@media (max-width: 719px) {
+  .site-head .bar { gap: 12px; padding: 12px 16px; }
+  .head-name { flex: 1; min-width: 0; }
+  .head-name small { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+}
+
+/* the animated mark, the only thing this page is asking about */
+.mark img { display: block; }
+.mark.keepbox { min-width: 50px; }
+
+.readout {
+  font-family: var(--font-data); font-size: 12px; color: var(--text-2);
+  padding: 9px 14px; border-top: 1px solid var(--line-soft);
+  display: flex; gap: 16px; flex-wrap: wrap; direction: ltr; justify-content: flex-start;
+}
+.readout b { color: var(--text-1); font-weight: 400; }
+.same { color: #6ee7a8; }
+.diff { color: var(--accent); }
+
+.hint {
+  margin-top: 30px; padding: 12px 14px;
+  border: 1px solid var(--line-soft); background: var(--bg-1); font-size: 13.5px;
+}
+.hint b { color: var(--accent); }
+kbd {
+  font-family: var(--font-data); font-size: 12px; border: 1px solid var(--line);
+  padding: 1px 5px; color: var(--text-1);
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>معاينة العلامة المتحركة في الترويسة</h1>
+  <p class="lede">
+    صفحة مؤقتة للعرض قبل النشر، تُحذف بعد اعتمادك. لا تمسّ <code>index.html</code> ولا المصدر.
+    الحركة تعمل <b>مرة واحدة عند فتح الصفحة</b>، وتُعاد <b>عند مرور المؤشر</b> على سطح المكتب
+    و<b>عند اللمس</b> على الجوال، لأن المرور لا وجود له في شاشة اللمس.
+  </p>
+
+  <div class="spec">
+    <header>
+      <h2>أ. الترويسة كما هي اليوم</h2>
+      <span class="note">العلامة المرسومة، 34 في 24</span>
+    </header>
+    <div class="site-head">
+      <div class="bar" data-bar="a">
+        <button class="mark" type="button" aria-label="Back to top" title="Back to top">
+          <svg viewBox="0 0 44 30" width="34" height="24" fill="none" aria-hidden="true">
+            <path class="m-a" d="M3 27 L11 3 L19 27 M6.4 17.5 L15.6 17.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path class="m-slash" d="M19.5 29 L24.5 1" stroke-linecap="round"/>
+            <path class="m-a m-a2" d="M25 27 L33 3 L41 27 M28.4 17.5 L37.6 17.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="head-name">Ahmad Al-Ahmadi<small>Project and Operations Manager</small></div>
+        <nav class="site-nav" aria-label="Sections">
+          <a href="#">Projects</a><a href="#">Experience</a><a href="#">Credentials</a><a href="#">AI</a><a href="#">Contact</a>
+        </nav>
+        <button class="nav-toggle" type="button" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <div class="readout" data-readout="a"></div>
+  </div>
+
+  <div class="spec">
+    <header>
+      <h2>ب. المتحركة، 24 في 24</h2>
+      <span class="note">ارتفاع الشريط لا يتغيّر، والزر يضيق عشرة بكسلات</span>
+    </header>
+    <div class="site-head">
+      <div class="bar" data-bar="b">
+        <button class="mark" type="button" aria-label="Back to top" title="Back to top">
+          <img data-anim width="24" height="24" alt="">
+        </button>
+        <div class="head-name">Ahmad Al-Ahmadi<small>Project and Operations Manager</small></div>
+        <nav class="site-nav" aria-label="Sections">
+          <a href="#">Projects</a><a href="#">Experience</a><a href="#">Credentials</a><a href="#">AI</a><a href="#">Contact</a>
+        </nav>
+        <button class="nav-toggle" type="button" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <div class="readout" data-readout="b"></div>
+  </div>
+
+  <div class="spec">
+    <header>
+      <h2>ج. المتحركة، 24 في 24، والزر محفوظ على مقاسه</h2>
+      <span class="note">نفس صندوق اليوم تماماً، 50 في 36، فلا يتحرك الاسم</span>
+    </header>
+    <div class="site-head">
+      <div class="bar" data-bar="c">
+        <button class="mark keepbox" type="button" aria-label="Back to top" title="Back to top">
+          <img data-anim width="24" height="24" alt="">
+        </button>
+        <div class="head-name">Ahmad Al-Ahmadi<small>Project and Operations Manager</small></div>
+        <nav class="site-nav" aria-label="Sections">
+          <a href="#">Projects</a><a href="#">Experience</a><a href="#">Credentials</a><a href="#">AI</a><a href="#">Contact</a>
+        </nav>
+        <button class="nav-toggle" type="button" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <div class="readout" data-readout="c"></div>
+  </div>
+
+  <div class="spec">
+    <header>
+      <h2>د. المتحركة، 28 في 28</h2>
+      <span class="note">أوضح، لكنه يزيد ارتفاع الشريط أربعة بكسلات</span>
+    </header>
+    <div class="site-head">
+      <div class="bar" data-bar="d">
+        <button class="mark" type="button" aria-label="Back to top" title="Back to top">
+          <img data-anim width="28" height="28" alt="">
+        </button>
+        <div class="head-name">Ahmad Al-Ahmadi<small>Project and Operations Manager</small></div>
+        <nav class="site-nav" aria-label="Sections">
+          <a href="#">Projects</a><a href="#">Experience</a><a href="#">Credentials</a><a href="#">AI</a><a href="#">Contact</a>
+        </nav>
+        <button class="nav-toggle" type="button" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <div class="readout" data-readout="d"></div>
+  </div>
+
+  <div class="hint">
+    <b>كيف تجرّب:</b> افتح الصفحة فتعمل الحركة مرة واحدة وتهدأ بعد أربع ثوانٍ.
+    ثم <b>المس العلامة</b> على الجوال، أو مرّر المؤشر عليها على الحاسب، فتبدأ من أولها.
+    ولا طلب شبكة في الإعادة: الملف يُنزَّل مرة واحدة لكل مسار ثم يُخزَّن.
+    <br><br>
+    <b>الأرقام تحت كل ترويسة محسوبة في متصفحك الآن</b>، لا مكتوبة سلفاً:
+    ارتفاع الشريط وصندوق الزر، و<span class="same">الأخضر</span> يعني مطابقاً لما هو اليوم.
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var SRC_A = "../media/crane_v12_128_once.gif";
+  var SRC_B = "../media/crane_v12_128_once.gif?r";
+  var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* both paths are fetched once, then served from cache, so a replay costs no
+     network request. a changing query string would re-download 208 KB each time. */
+  var warm = new Image();
+  warm.src = SRC_B;
+
+  document.querySelectorAll("img[data-anim]").forEach(function (img) {
+    img.src = SRC_A;
+    var btn = img.closest(".mark");
+    var replay = function () {
+      if (reduced) return;
+      img.src = (img.getAttribute("src") === SRC_A) ? SRC_B : SRC_A;
+    };
+    btn.addEventListener("mouseenter", replay);
+    btn.addEventListener("click", function (e) { e.preventDefault(); replay(); });
+  });
+
+  /* live measurements, so the numbers on the page are the browser's own */
+  function box(el) {
+    var r = el.getBoundingClientRect();
+    return Math.round(r.width * 10) / 10 + " x " + Math.round(r.height * 10) / 10;
+  }
+  function measure() {
+    var ref = document.querySelector('[data-bar="a"]');
+    var refBar = Math.round(ref.getBoundingClientRect().height * 10) / 10;
+    var refMark = box(ref.querySelector(".mark"));
+    ["a", "b", "c", "d"].forEach(function (k) {
+      var bar = document.querySelector('[data-bar="' + k + '"]');
+      var out = document.querySelector('[data-readout="' + k + '"]');
+      var h = Math.round(bar.getBoundingClientRect().height * 10) / 10;
+      var m = box(bar.querySelector(".mark"));
+      var name = bar.querySelector(".head-name").getBoundingClientRect();
+      out.innerHTML =
+        'bar height <b class="' + (h === refBar ? "same" : "diff") + '">' + h + 'px</b>' +
+        '<span>mark box <b class="' + (m === refMark ? "same" : "diff") + '">' + m + '</b></span>' +
+        '<span>name starts at <b>' + Math.round(name.left) + 'px</b></span>';
+    });
+  }
+  measure();
+  window.addEventListener("resize", measure);
+  window.addEventListener("load", measure);
+})();
+</script>
+</body>
+</html>
